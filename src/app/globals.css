@@ -1,0 +1,109 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@media only screen and (max-width: 720px) {
+  html{
+    font-size: 1.53vw;
+  }
+}
+
+@media only screen and (min-width: 720px) {
+  html{
+    font-size: 11px;
+  }
+}
+
+.thumb--left {
+  z-index: 3;
+}
+
+.thumb--right {
+  z-index: 4;
+}
+
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+.range::-webkit-slider-thumb {
+   width: 4rem;
+   }
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ebebeb;
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #363636;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@layer components{
+
+  .scroll-slide-y{
+    scroll-snap-type: y mandatory;
+     
+   }
+
+  .scroll-slide-y-child{
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+
+.big-button{
+  @apply  block text-base bg-secondary font-normal text-primary px-2 py-1 rounded-lg border-solid border-2 border-secondary;
+}
+.center{
+    @apply items-center justify-center 
+}
+.full-screen{
+    @apply w-screen h-screen
+}
+.light-text{
+  @apply text-sm font-light
+}
+.slide-in{
+  @apply translate-x-0 duration-[2s] 
+}
+.slideY-out-top{
+  @apply translate-y-[50%] duration-[2s] opacity-0
+}
+
+}
+
+
+@keyframes appear-to-right {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0%;
+      display: flex;
+    }
+    100% {
+      transform: translateX(0);
+      display: flex;
+      opacity: 100%;
+    }
+  }
+  
+  @keyframes fade-in {
+    0% {
+      opacity: 0%;
+    }
+    20% {
+      opacity: 0%;
+    }
+    100% {
+      opacity: 100%;
+    }
+  }
+
+

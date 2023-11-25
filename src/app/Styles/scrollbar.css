@@ -1,0 +1,11 @@
+/* Untuk Chrome, Safari, dan Firefox */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+  }
+  
+  /* Untuk Firefox */
+  .custom-scrollbar {
+    scrollbar-width: none;
+  }
+  
