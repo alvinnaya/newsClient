@@ -17,7 +17,9 @@ const [reload, setReload] = useState(true)
 const [showModalDelete, setShowModalDelete] = useState(false);
 const [showLoading, setShowLoadig] = useState(true);
 const [showModalPublish, setShowModalPublish] = useState(false);
+const [showModalUpdate, setShowModalUpdate] = useState(false);
 const [gagal, setGagal] = useState(false);
+const [berhasil, setBerhasil] = useState(false);
 const [pesanGagal, setPesanGagal] = useState('');
 const [ModalData , setModalData] = useState('')
 const apiKey = process.env.API_KEY || 'localhost:3000';
@@ -72,10 +74,12 @@ const handleDelete = (id) =>{
                 console.log(response.json)
                 setReload(!reload)
                 setShowModalDelete(false)
+                setBerhasil(true)
                 // Tambahkan logika apa yang harus dilakukan setelah artikel berhasil dibuat
               }else{
                 setShowModalDelete(false)
                 setPesanGagal('gagal di hapus')
+                setBerhasil(false)
                 setGagal(true)
               }
     
@@ -83,6 +87,7 @@ const handleDelete = (id) =>{
     console.log(error)
     setShowModalDelete(false)
     setPesanGagal('gagal di hapus')
+    setBerhasil(false)
     setGagal(true)
     }
 
@@ -115,12 +120,14 @@ console.log(id)
    console.log(article);
    setShowModalPublish(false)
    setReload(!reload)
+   setBerhasil(true)
    
    // Tambahkan logika apa yang harus dilakukan setelah artikel berhasil dibuat
  } else {
    console.error('Gagal membuat artikel');
    setShowModalPublish(false)
    setPesanGagal('gagal di Publish')
+   setBerhasil(false)
    setGagal(true)
    // Tambahkan logika apa yang harus dilakukan jika gagal membuat artikel
  }
@@ -129,11 +136,56 @@ console.log(id)
  console.error('Terjadi kesalahan', error);
  setShowModalPublish(false)
  setPesanGagal('gagal di Publish')
+ setBerhasil(false)
    setGagal(true)
+   
  // Tambahkan logika apa yang harus dilakukan jika terjadi kesalahan
 }
 }
 
+
+const handleUpdate = async(id)=>{
+  try{
+console.log(id)
+    const data = Cookies.get("jwt-token")
+   
+  
+ const response = await fetch(`http://${apiKey}/api/article/updatePublish`, {
+   method: 'POST',
+   headers: {
+     'Content-Type': 'application/json',
+     'jwt-token': data,
+   },
+   body: JSON.stringify({id}),
+
+ });
+
+ if (response.status === 201) {
+   const article = await response.json();
+   console.log(article);
+   setShowModalUpdate(false)
+   setReload(!reload)
+   setBerhasil(true)
+   
+   // Tambahkan logika apa yang harus dilakukan setelah artikel berhasil dibuat
+ } else {
+   console.error('Gagal membuat artikel');
+   setShowModalUpdate(false)
+   setPesanGagal('gagal di Publish')
+   setBerhasil(false)
+   setGagal(true)
+   // Tambahkan logika apa yang harus dilakukan jika gagal membuat artikel
+ }
+
+} catch (error) {
+ console.error('Terjadi kesalahan', error);
+ setShowModalUpdate(false)
+ setPesanGagal('gagal di Publish')
+ setBerhasil(false)
+   setGagal(true)
+ // Tambahkan logika apa yang harus dilakukan jika terjadi kesalahan
+}
+}
 
 
     const router = useRouter();
@@ -248,10 +300,19 @@ console.log('imageContainer',foundImageContainer)
 
               <div className="bg-neutralPrimary2 hover:shadow-brutalism border border-current duration-300 mb-4 h-[8rem] w-[10rem] p-6 rounded-xl flex center ">
                               {/* <Link href={`/admin/ads/${item.id}`} className="text-5xl font-bold p-4 text-clip overflow-hidden">edit</Link> */}
-                              <button onClick={() => {setShowModalPublish(true); setModalData(item)}}
+                              <button onClick={() => {
+                                if(item.status){
+                                  setShowModalUpdate(true); 
+                                  setModalData(item);
+                                }else{
+                                  setShowModalPublish(true); 
+                                  setModalData(item);
+                                }
+                                
+                              }}
                                 className="text-xl font-bold p-4 text-clip overflow-hidden"
                               >
-                                {`${item.status? 'published':'unpublished'}`}
+                                {`${item.status? 'UPDATE':'PUBLISH'}`}
                               </button>
               </div>
 
@@ -273,6 +334,7 @@ console.log('imageContainer',foundImageContainer)
       
      
       <ModalButton title={`apakah anda ingin mempublish ${ModalData.id}`} showModal={showModalPublish} setShowModal={setShowModalPublish} handlefunc={()=>handlePublish(ModalData.id)}/>
+      <ModalButton title={`apakah anda ingin mengupdate ${ModalData.id}`} showModal={showModalUpdate} setShowModal={setShowModalUpdate} handlefunc={()=>handleUpdate(ModalData.id)}/>
       <ModalButton title={'apakah anda ingin menghapus'} showModal={showModalDelete} setShowModal={setShowModalDelete} handlefunc={()=>handleDelete(ModalData.id)}/>
             </BlogCard>
           ))
@@ -280,6 +342,8 @@ console.log('imageContainer',foundImageContainer)
         </div>
         </div>
         {gagal? <Alert fungsi={()=>setGagal(false)}>{pesanGagal}</Alert>:''}
+        
+        {berhasil? <Alert color={"bg-green-600"} fungsi={()=>setBerhasil(false)}>{"berhasil diperbarui"}</Alert>:''}
         
       </NavbarWriterLayout >
       

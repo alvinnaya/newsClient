@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Alert = ({children,fungsi}) => {
+const Alert = ({children,fungsi,color}) => {
     return (
         <div className="fixed inset-x-0 bottom-0 p-4">
   <div
-    className="relative flex items-center justify-between gap-4 rounded-lg bg-red-600 px-4 py-3 text-white shadow-lg"
+    className={`relative flex items-center justify-between gap-4 rounded-lg ${color? color:"bg-red-600"} px-4 py-3 text-white shadow-lg`}
   >
     <p className="text-sm font-medium">
       {children}
