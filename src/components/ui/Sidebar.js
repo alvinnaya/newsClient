@@ -25,11 +25,11 @@ import Cookies from "js-cookie";
 
 const Sidebar = (props) => {
 
-  const {editor,setEditor,card,setCard,componentsSelect, setComponentsSelect,componentsClipBoard,setComponentsClipBoard} = useContext(AppStateContext);
+  const {editor,setEditor,card,setCard,componentsSelect, setComponentsSelect,componentsClipBoard,setComponentsClipBoard,onText} = useContext(AppStateContext);
   const [pageIndex, setPageIndex] = useState(0)
   const [isInside, setIsInside] = useState(false)
   const [reload,setReload] = useState(false)
-  const apiKey = process.env.API_KEY || 'localhost:3000';
+  const apiKey = process.env.NEXT_PUBLIC_API_KEY || 'localhost:3000';
 const deffaultImage = process.env.DEFFAULT_IMG || '1696143107524.webp';
  
   const saveDraft = async()=>{
@@ -181,29 +181,48 @@ useEffect(() => {
     // Tambahkan pemetaan lain di sini
   };
 
-  const handleCopy = ()=> {
-    const newCard = [...card]
-    const newComponentArray = []
-    console.log(newCard[pageIndex])
-    componentsSelect.map((item)=>{
-      console.log(newCard[pageIndex].components[item])
-      newComponentArray.push(newCard[pageIndex].components[item])
-      
-    })
-    console.log('newComponent',newComponentArray)
-    setComponentsClipBoard(newComponentArray)
-  }
+  const handleCopy = async () => {
+    console.log('onText',onText.current)
+if(onText.current){
+  return;
+}
 
-  const handlePaste = ()=> {
+
+    const newCard = [...card];
+    const newComponentArray = [];
+  
+    console.log(newCard[pageIndex]);
+  
+    componentsSelect.forEach((item) => {
+      console.log(newCard[pageIndex].components[item]);
+      newComponentArray.push(newCard[pageIndex].components[item]);
+    });
+  
+    console.log('newComponent', newComponentArray);
+  
+    try {
+      await navigator.clipboard.writeText(JSON.stringify(newComponentArray));
+      console.log('Data copied to clipboard successfully.');
+    } catch (err) {
+      console.error('Error copying to clipboard:', err);
+    }
+  };
+  
+
+  const handlePaste = async ()=> {
+    const clipboardItems = await navigator.clipboard.readText()
+    console.log('paste',JSON.parse(clipboardItems))
+    const clipboardData = await JSON.parse(clipboardItems)
     const newCard = [...card]
-    console.log(componentsClipBoard)
-    componentsClipBoard.map((item)=>{
+    clipboardData.map((item)=>{
       console.log(item)
       newCard[pageIndex].components.push(item)
       
     })
     setCard(newCard)
     console.log(newCard[pageIndex].components)
+  
+
     saveDraft()
 
   }
@@ -242,6 +261,7 @@ const handleSwapleft = (index1,index2) =>{
     newCard[index2] = newCard[index1]
     newCard[index1] = temp
     setCard(newCard);
+    
   }
 }
 
@@ -256,6 +276,7 @@ const handleSwapright = (index1,index2) =>{
     newCard[index2] = newCard[index1]
     newCard[index1] = temp
     setCard(newCard);
+    
   }
 }
 
@@ -266,18 +287,33 @@ const handleDelete = (index) =>{
     const newCard = [...card]
     newCard.splice(index,1)
     setCard(newCard)
+    
   }
 }
 
 const handleAdd = () => {
-  const newCard = [...card]
-  const emptyCard = {
-    page : `${card.length+1}`,
-    components:[]
-   };
-  newCard.push(emptyCard);
-  setCard(newCard)
-}
+  // Menggunakan callback dalam setCard untuk memastikan penggunaan nilai terakhir dari state
+  setCard((prevCard) => {
+    // Membuat objek salinan baru daripada mengubah langsung array state
+    const newCard = [...prevCard];
+
+    // Membuat kartu kosong dengan nomor halaman yang sesuai
+    const emptyCard = {
+      page: `${prevCard.length + 1}`,
+      components: [],
+    };
+
+    // Menambahkan kartu kosong ke array baru
+    newCard.push(emptyCard);
+
+    // Mengembalikan array baru untuk diatur sebagai state
+    return newCard;
+  }, () => {
+    // Callback ini akan dipanggil setelah state berhasil diperbarui
+    console.log('berhasil add')
+    saveDraft();
+  });
+};
 
 
 
@@ -323,7 +359,7 @@ const handleAdd = () => {
                </div>
        : null
        }
-          <Card onClick={()=>console.log('card')} key={index} color={`${item.color}`}  gradient={`${item.gradient}`} >
+          <Card  key={index} color={`${item.color}`}  gradient={`${item.gradient}`} >
           {
           item.components.map((item2,index2)=>{
             
@@ -342,7 +378,8 @@ const handleAdd = () => {
         <div className='flex full-screen '>
 
           <div className='basis-1/4 w-full h-full bg-neutralPrimary2 flex flex-col justify-center'>
-              <div className="h-full w-full flex border basis-3/5 overflow-y-auto ">
+              <div 
+              className="h-full w-full flex border basis-3/5 overflow-y-auto ">
                   {EditorComponent && <EditorComponent />}
               </div>
               <div className="h-full w-full   flex  basis-2/5  overflow-y-auto">
@@ -370,7 +407,7 @@ const handleAdd = () => {
                 <button className="rotate-180 block" onClick={handlePrev}>
                 <svg className="hover:opacity-100 opacity-80 text-center w-12 h-12 m-2 text-secondary p-2 bg-primary rounded-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
                 </button>
-              <div className="w-[60rem] bg-secondary flex flex-row aspect-[5/6] overflow-hidden scale-[70%] ">
+              <div  className="w-[60rem] bg-secondary flex flex-row aspect-[5/6] overflow-hidden scale-[70%] ">
                 <SliderContainer index={pageIndex} >
                   {Cards}
                   <div className="flex flex-col">

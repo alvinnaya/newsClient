@@ -1,13 +1,13 @@
 
-import BaseText from "../CardComponentView/BaseText";
+
 import Card from "../Card";
-import HeadingText from "../CardComponentView/HeadingText";
-import ArticleRecomendation from "../CardComponentView/ArticleRecomendation";
-import BaseImage from "../CardComponentView/BaseImage";
-import Shape from "../CardComponentView/Shape";
+import { lazy } from "react";
 
-
-
+const BaseText = lazy(()=> import("../CardComponentView/BaseText"))
+const HeadingText = lazy(()=> import("../CardComponentView/HeadingText"))
+const ArticleRecomendation = lazy(()=> import("../CardComponentView/ArticleRecomendation"))
+const BaseImage = lazy(()=> import("../CardComponentView/BaseImage"))
+const Shape  = lazy(()=> import("../CardComponentView/Shape"))
 const EditorCardPreview =  ({card,currentIndex}) => {
 
 
@@ -39,7 +39,7 @@ const EditorCardPreview =  ({card,currentIndex}) => {
         
         return(
           
-            <div key={index} id={`${index+1}`} className={` duration-[2000ms] w-[60rem] aspect-[5/6] flex-none border-slate-700 border-2 scale-90 rounded-xl  `}>
+            <div key={index} id={`${index+1}`} className={` duration-[2000ms] w-[60rem] aspect-[5/6] flex-none border-slate-700 border-2 scale-90 rounded-xl overflow-hidden `}>
               
               <Card key={index} color={`${item.color}`}  gradient={`${item.gradient}`}>
               {item.components.map((item2,index2)=>{

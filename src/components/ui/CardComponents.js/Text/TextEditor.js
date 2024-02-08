@@ -12,8 +12,9 @@ function TextEditor(props) {
 const [currentIndex,setCurrentIndex] = useState(0)
 
     return (
-        <div className='bg-neutralPrimary1 flex flex-col m-4 w-full h-full rounded p-4'>
-            <div className='flex px-6 gap-2'>
+        <div 
+        className='bg-neutralPrimary1 flex flex-col m-4 w-full h-full rounded p-4'>
+            <div className='flex px-6 gap-2' onMouseDown={(e) => e.preventDefault()}>
                 <button onClick={()=>{setCurrentIndex(0); console.log(currentIndex)}} className={`flex center w-[6rem] text-neutralPrimary1 p-2 
                 rounded-t-xl ${currentIndex == 0 ? ' border-b-0 scale-[120%] bg-neutralSecondary1':'bg-neutralSecondary3 '}  `}>
                     general
@@ -29,7 +30,7 @@ const [currentIndex,setCurrentIndex] = useState(0)
  <div className='bg-neutralSecondary1 rounded-xl py-8 p-4'>
  {currentIndex == 0 ?
  <>
- <div className='flex center'>
+ <div onMouseDown={(e) => e.preventDefault()} className='flex center'>
      <DropdownButton ButtonStyle={''} NameButton={'Font size'} >
          <NewButtonText style={'fontSize'} name={'3 x ExtraLarge'} value={'6.5rem'}/>
          <NewButtonText style={'fontSize'} name={'2 x ExtraLarge'} value={'5.5rem'}/>
@@ -44,7 +45,7 @@ const [currentIndex,setCurrentIndex] = useState(0)
          <NewButtonText style={'fontWeight'} name={'Bold'} value={'700'}/>
          <NewButtonText style={'fontWeight'} name={'SemiBold'} value={'600'}/>
          <NewButtonText style={'fontWeight'} name={'medium'} value={'500'}/>
-         <NewButtonText style={'fontWeight'} name={'Regular'} class={'text-orange-500'} value={'400'}/>
+         <NewButtonText style={'fontWeight'} name={'Regular'} class={'400'} value={'400'}/>
          <NewButtonText style={'fontWeight'} name={'light'} value={'300'}/>
          <NewButtonText style={'fontWeight'} name={'Extralight'} value={'200'}/>
          <NewButtonText style={'fontWeight'} name={'Thin'} value={'100'}/>

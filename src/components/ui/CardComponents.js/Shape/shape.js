@@ -86,7 +86,8 @@ function Shape(props) {
     return (
         
             <div onClick={(e)=>{handleFocus(); handleItemClick(e);}}
-             className={`h-full w-full z-[3] font-[50] h-[min-content] border-2 bg-neutralSecondary1 ${props.select ? 'border-black':'border-transparent'}
+             className={`h-full w-full z-[3] font-[50] h-[min-content] border-2 bg-neutralSecondary1 
+              hover:border-black ${props.select ? 'border-black':'border-transparent'}
              ${props.style}`} style={{backgroundImage:props.all.gradient ,backgroundColor: props.all.color,zIndex:`${props.zIndex}`,fontSize:`1rem`,gridColumnStart: `${props.style.colStart}`,gridColumnEnd: `${props.style.colEnd}`,gridRowStart: `${props.style.rowStart}`,gridRowEnd: `${props.style.rowEnd}`,borderRadius:`${props.style.borderRadius}rem`}} >
                  
                  

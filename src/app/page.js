@@ -4,6 +4,7 @@ import Card from '@/components/ui/Card';
 import BaseText from '@/components/ui/CardComponentView/BaseText';
 import HeadingText from '@/components/ui/CardComponentView/HeadingText';
 import BaseImage from '@/components/ui/CardComponentView/BaseImage';
+import Shape from '@/components/ui/CardComponentView/Shape';
 import Logo from '@/components/Logo/logo';
 import Link from 'next/link';
 
@@ -99,6 +100,8 @@ const page = () => {
         ImageContainer: BaseImage,
         HeadingText : HeadingText,
         SubHeading : BaseText,
+        Text: BaseText,
+        Shape: Shape,
         none: '',
        
         // Tambahkan pemetaan lain di sini
@@ -121,9 +124,9 @@ const page = () => {
               {posts && posts.map((item,index) => {
                 
                 return(
-                  <div className={`scroll-slide-y-child  flex flex-col center scale-90 h-screen lg:scale-75 rounded-xl  `}>
-                    <Link href={`articles/${item.articleId}`}  key={index}  className="w-[60rem] aspect-[5/6] rounded-xl border border-current ">
-                   
+                  <div className={`scroll-slide-y-child  flex flex-col center scale-[85%] h-screen lg:scale-75 rounded-xl  `}>
+                  <Link href={`articles/${item.articleId}`}  key={index}  className="rounded-xl border border-current lg:flex p-0 m-0  ">
+                   <div className="w-[60rem] flex aspect-[5/6] rounded-xl m-0 p-0">
                    <Card key={index}  color={`${item.blogContent.color}`}  gradient={`${item.blogContent.gradient}`}>
                    {item.blogContent.components.map((item2,index2)=>{
                      const CardComponent = CardComponentMap[item2.name];
@@ -131,12 +134,17 @@ const page = () => {
                      return (<CardComponent key={index2} all={item2} Text={item2.contents} style={item2.style} zIndex={item2.zIndex} page={index} componentIndex={index2} />)
                    })}
                    </Card>
+                   </div>
+                 
+                 <div className=' lg:w-[8rem] lg:h-full w-full h-[8rem] bg-gradient-to-tr from-primary1 to-primary2 flex center p-0 m-0'>
+                 <svg xmlns="http://www.w3.org/2000/svg" width="80%" height="80%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                 </div>  
                  
                 </Link> 
                 
-<div>
+{/* <div>
   <button className='text-2xl bg-white rounded-xl p-4 m-8 border-slate-700 border-2 '>baca selengkapnya</button>
-</div>
+</div> */}
                   </div>
                   
                   

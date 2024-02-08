@@ -256,8 +256,7 @@ const ImageModal = () => {
                      
                   </div> 
                   <div className='flex flex-col max-w-[80%] max-h-[60%] m-12' style={{}}>
-                    {currentImage ? <img className={`w-full h-full object-contain`}  src={`${currentImage}`}/> : null }
-                    
+                  {currentImage && currentImage.replace("http://103.127.132.64:3000", "http://api.figustack.com") ? <img className={`w-full h-full object-contain`}  src={`${currentImage.replace("http://103.127.132.64:3000", "http://api.figustack.com")}`}/> : null }
                   </div>
                     </TabsContent>
                     <TabsContent index={2} currentIndex={currentIndex}>
@@ -283,8 +282,7 @@ const ImageModal = () => {
                      
                   </div> 
                   <div className='flex flex-col max-w-[80%] max-h-[60%] m-12' style={{}}>
-                    {currentImage ? <img className={`w-full h-full object-contain`}  src={`${currentImage}`}/> : null }
-                    
+                     {currentImage && currentImage.replace("http://103.127.132.64:3000", "http://api.figustack.com") ? <img className={`w-full h-full object-contain`}  src={`${currentImage.replace("http://103.127.132.64:3000", "http://api.figustack.com")}`}/> : null }
                   </div>
                     </TabsContent>
 
@@ -292,7 +290,7 @@ const ImageModal = () => {
                     <div className='flex gap-6 w-full h-[80%] flex-none flex-wrap overflow-y-auto justify-around'> 
                     {listImage.map((item,index) => (
             <div className='flex w-[40%] max-h-[50%] flex-col center' onClick={()=>handleImageChoose(item,index)} >
-              <img className={`max-w-full max-h-full rounded ${index == currentImageIndex ? 'border-4 border-indigo-600 object-cover' : 'object-contain'} `} src={`${item.url_image}`} />
+              <img className={`max-w-full max-h-full rounded ${index == currentImageIndex ? 'border-4 border-indigo-600 object-cover' : 'object-contain'} `} src={`${item.url_image.replace("http://103.127.132.64:3000", "http://api.figustack.com")}`} />
             </div>
         ))}
                      

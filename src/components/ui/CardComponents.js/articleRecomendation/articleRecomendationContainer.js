@@ -24,15 +24,14 @@ const ArticleRecomendationContainer = (props) => {
     return (
         <>
          <div onClick={handleFocus}
-             className={`leading-tight block z-[3] w-full h-full font-[50] h-[min-content]  ${props.style}`} style={{zIndex:`${props.zIndex}`,fontSize:`1rem`,gridColumnStart: `${props.style.colStart}`,gridColumnEnd: `${props.style.colEnd}`,gridRowStart: `${props.style.rowStart}`,gridRowEnd: `${props.style.rowEnd}`,margin:`${props.style.margin}rem`}} >
-                  <div className='w-full h-full m-4 bg-slate-200 flex flex flex-wrap flex-auto ' style={{borderRadius:`${props.style.borderRadius}rem`,flexDirection: `${props.style.flexDirection}`}}>
-                    <div className='w-[12rem] flex-auto rounded-xl'>
+             className={`leading-tight block z-[3] w-full h-full font-[50] h-[min-content] hover:border-black ${props.style}`} style={{zIndex:`${props.zIndex}`,fontSize:`1rem`,gridColumnStart: `${props.style.colStart}`,gridColumnEnd: `${props.style.colEnd}`,gridRowStart: `${props.style.rowStart}`,gridRowEnd: `${props.style.rowEnd}`,margin:`${props.style.margin}rem`}} >
+                  <div className='w-full h-full m-4 bg-slate-200 flex flex-wrap flex-auto ' style={{borderRadius:`${props.style.borderRadius}rem`,flexDirection: `${props.style.flexDirection}`}}>
+                    <div className='w-[55%] h-full flex-auto rounded-xl'>
                     <img className={`w-full h-full object-cover rounded-xl`}  src={`${props.all.image}`}/>
                     </div>
-                    <div className={`w-[10rem] flex flex-auto flex-col rounded-xl bg-slate-200  text-2xl font-semibold`}>
-                        <h1 className='w-[90%] m-8 h-full' style={{fontSize:`${props.style.fontSize}rem`}}>{`${props.all.contents}`||'headline kali ini adalah ini'} </h1>
+                    <div className={`w-[45%] h-full flex flex-auto flex-col rounded-xl text-2xl font-semibold`}>
+                        <h1 className='w-[90%] m-8 h-full text-ellipsis' style={{fontSize:`${props.style.fontSize}rem`}}>{`${props.all.contents}`||'headline kali ini adalah ini'} </h1>
                         <button className='bg-black text-white rounded-xl self-end m-4 text-xl px-4 py-2'>read</button>
-                        
                     </div>
                   </div>
                  

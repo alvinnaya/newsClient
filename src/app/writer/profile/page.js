@@ -24,13 +24,14 @@ const [currentImageIndex, setCurrentImageIndex] = useState(null)
 const [showLoading, setShowLoadig] = useState(true);
 const [reupload, setReupload] = useState(true);
 const[profile,setProfile] = useState([])
+const apiKey = process.env.NEXT_PUBLIC_API_KEY || 'localhost:3000';
   useEffect( () => {
     
     async function fetchData() {
     try {
       console.log('jalan');
       const data = Cookies.get("jwt-token")
-      const res = await fetch(`http://localhost:3000/api/image/get-image/writer`, {
+      const res = await fetch(`http://${apiKey}/api/image/get-image/writer`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -59,7 +60,7 @@ const[profile,setProfile] = useState([])
       try {
         console.log('jalan');
         const data = Cookies.get("jwt-token")
-        const res = await fetch(`http://localhost:3000/api/writer/profile/`, {
+        const res = await fetch(`http://${apiKey}/api/writer/profile/`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -96,7 +97,7 @@ const handleimageprofile = async() =>{
       return;
     }
     const data = Cookies.get("jwt-token")
-    const response = await fetch('http://localhost:3000/api/writer/profile/changeImage/', {
+    const response = await fetch(`http://${apiKey}/api/writer/profile/changeImage/`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -130,7 +131,7 @@ console.log('berhasil di ubah profile')
         
         try {
           const data = Cookies.get("jwt-token")
-          const response = await fetch('http://localhost:3000/api/image/upload/writer', {
+          const response = await fetch(`http://${apiKey}/api/image/upload/writer`, {
             method: 'POST',
             headers: {
               'jwt-token': data,
@@ -160,7 +161,7 @@ console.log('berhasil di ubah profile')
   try {
     console.log(nama)
     const data = Cookies.get("jwt-token")
-    const response = await fetch('http://localhost:3000/api/writer/profile/changeNama/', {
+    const response = await fetch(`http://${apiKey}/api/writer/profile/changeNama/`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -182,13 +183,13 @@ console.log('berhasil di ubah profile')
     console.error('Terjadi kesalahan:', error);
   }
  }
-
+console.log('image',profile.profile_image)
     return (
       <>
       <NavbarWriterLayout >
        <div className="w-full h-full flex flex-col center gap-[5rem]">
             <div className="relative">
-            <img className="w-[10rem] h-[10rem] rounded-full object-cover border-2 border-neutralSecondary1" src={`${profile.profile_image}`||`https://inasianspaces.files.wordpress.com/2020/10/lelouch-ep-25-final.png?w=1200" alt="Rounded avatar`}/>
+            <img className="w-[10rem] h-[10rem] rounded-full object-cover border-2 border-neutralSecondary1" src={`${profile.profile_image == undefined ? '':profile.profile_image.replace("http://103.127.132.64:3000", "http://api.figustack.com")}`||`https://inasianspaces.files.wordpress.com/2020/10/lelouch-ep-25-final.png?w=1200" alt="Rounded avatar`}/>
             <span onClick={()=>setModalImage(true)} className="absolute flex center bottom-0 right-0  w-[3rem] h-[3rem] border border-current bg-gradient-to-r from-primary1 to-primary2 text-neutralSecondary1 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" width="60%" height="60%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><g transform="translate(2 3)"><path d="M20 16a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2h3l2-3h6l2 3h3a2 2 0 0 1 2 2v11z"/><circle cx="10" cy="10" r="4"/></g></svg></span>
             </div>
             <div className="w-full flex-col center flex gap-6">
@@ -229,16 +230,16 @@ console.log('berhasil di ubah profile')
 
 
                   <div className='flex flex-col w-[8rem] h-[8rem] m-12 rounded-full' style={{}}>
-                    {currentImage ? <img className={`w-full h-full object-cover rounded-full`}  src={`${currentImage}`}/> : null }
+                    {currentImage ? <img className={`w-full h-full object-cover rounded-full`}  src={`${currentImage.replace("http://103.127.132.64:3000", "http://api.figustack.com")}`}/> : null }
                     
                   </div>
 
-
+              
 
                   <div className='flex gap-6 w-full h-[25rem] flex-none flex-wrap overflow-y-auto justify-around'> 
                     {listImage.map((item,index) => (
             <div className='flex w-[40%] max-h-[50%] flex-col center' onClick={()=>handleImageChoose(item,index)} >
-              <img className={`max-w-full max-h-full rounded ${index == currentImageIndex ? 'border-4 border-primary1 object-cover' : 'object-contain'} `} src={`${item.image_url}`} />
+              <img className={`max-w-full max-h-full rounded ${index == currentImageIndex ? 'border-4 border-primary1 object-cover' : 'object-contain'} `} src={`${item.image_url.replace("http://103.127.132.64:3000", "http://api.figustack.com")}`} />
             </div>
         ))}
                      

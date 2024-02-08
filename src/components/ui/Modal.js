@@ -13,6 +13,7 @@ const Modal = (props) => {
   { id: 2, name: 'Motor' }]);
   const [allTag,setAllTag] = useState([]);
   const router = useRouter();
+  const apiKey = process.env.NEXT_PUBLIC_API_KEY || 'localhost:3000';
   
   useEffect(() => {
 
@@ -20,10 +21,10 @@ const Modal = (props) => {
       console.log('get tags')
     try{
       console.log('get tags')
-      const data1 = await fetch('http://localhost:3000/api/article/alltags', {
+      const data1 = await fetch(`http://${apiKey}/api/article/alltags`, {
             method: 'GET',
           })
-      const data2 = await fetch(`http://localhost:3000/api/article/articletags/${props.Id}`, {
+      const data2 = await fetch(`http://${apiKey}/api/article/articletags/${props.Id}`, {
             method: 'GET',
           })
       const articleTags = await data2.json()
@@ -54,7 +55,7 @@ console.log(err)
       try{
         console.log(inputValue)
         const data = Cookies.get("jwt-token")
-        const response = await fetch('http://localhost:3000/api/article/initializeTag', {
+        const response = await fetch(`http://${apiKey}/api/article/initializeTag`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -82,7 +83,7 @@ console.log(err)
     try{
       console.log(item.id)
       const data = Cookies.get("jwt-token")
-      const response = await fetch('http://localhost:3000/api/article/removeTag', {
+      const response = await fetch(`http://${apiKey}/api/article/removeTag`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -132,7 +133,7 @@ const saveDraft = async()=>{
     console.log(props.Id)
   
   
- const response = await fetch('http://localhost:3000/api/article/update', {
+ const response = await fetch(`http://${apiKey}/api/article/update`, {
    method: 'PUT',
    headers: {
      'Content-Type': 'application/json',
@@ -164,7 +165,7 @@ const CreateTag = async()=>{
   try{
     console.log(inputValue)
     const data = Cookies.get("jwt-token")
-    const response = await fetch('http://localhost:3000/api/article/createTag', {
+    const response = await fetch(`http://${apiKey}/api/article/createTag`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

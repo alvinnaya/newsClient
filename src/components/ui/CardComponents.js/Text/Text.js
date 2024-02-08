@@ -23,7 +23,7 @@ function sanitizeHTML(html) {
 
 
 function Text(props) {
-    const {setEditor,editor,setCard,card,componentsSelect, setComponentsSelect} = useContext(AppStateContext);
+    const {setEditor,editor,setCard,card,componentsSelect, setComponentsSelect,onText,setOnText} = useContext(AppStateContext);
     const editorRef = useRef();
     const [isSelected, setIsSelected] = useState(false)
     const [isEdit,setIsEdit] = useState(false)
@@ -54,17 +54,22 @@ function Text(props) {
 
       const handleItemClick = (e) => {
        console.log(props.componentIndex)
+       
+       setIsEdit(true)
+
         // Jika tombol shift ditekan dan ada item yang dipilih
         if (e.shiftKey && componentsSelect.length > 0) {
           const newSelectedComponent = [...componentsSelect, props.componentIndex]
           console.log('new',newSelectedComponent)
           setComponentsSelect([...componentsSelect, props.componentIndex])
           console.log(componentsSelect)
+          setIsEdit(true)
           
         } else {
           // Jika shift tidak ditekan, atau tidak ada item yang dipilih
           setComponentsSelect([props.componentIndex]);
           console.log('componentsSelect',componentsSelect)
+          
         }
 
         handleFocus(e)
@@ -108,24 +113,43 @@ function Text(props) {
         handleItemClick(e)
         if (e.detail == 1) {
           console.log('double')
-          setIsEdit(true)
+          
         }
       };
     
     
       const HandleContentChange = (e)=>{
+        console.log('blur')
       const selection = window.getSelection();
       const range = selection.getRangeAt(0);
       // console.log(range.startOffset, range.endOffset);
-       
-      if(range.endOffset - range.startOffset == 0){
+      
+      
+      // if(range.endOffset - range.startOffset == 0){
+      //   const newContent = [...card]; // Menyalin array card ke variabel baru agar tidak mengubah state langsung
+      //   newContent[editor.index.cardIndex].components[editor.index.componentIndex].contents = e.target.innerHTML ; // Mengganti nilai contents pada komponen pertama
+      //   setCard(newContent);
+      //  console.log(onText); setIsEdit(false);
+      //  onText.current = false;
+      // }
+
+
         const newContent = [...card]; // Menyalin array card ke variabel baru agar tidak mengubah state langsung
         newContent[editor.index.cardIndex].components[editor.index.componentIndex].contents = e.target.innerHTML ; // Mengganti nilai contents pada komponen pertama
         setCard(newContent);
-        setIsEdit(false)
+        console.log(onText); setIsEdit(false);
+        onText.current = false;
+      }
+
+      const HandleContentChange2 = (e)=>{
+       
+          const newContent = [...card]; // Menyalin array card ke variabel baru agar tidak mengubah state langsung
+          newContent[editor.index.cardIndex].components[editor.index.componentIndex].contents = e.target.innerHTML ; // Mengganti nilai contents pada komponen pertama
+          setCard(newContent);
+         
+          
         
-      }
-      }
+        }
 
       const handlePaste = (event) => {
         event.preventDefault();
@@ -138,13 +162,14 @@ function Text(props) {
       };
 
     return (
-        <div  className={`relative border-2  ${props.select ? 'border-black':'border-transparent'}`}
+        <div  className={`relative border-2 hover:border-black  ${props.select ? 'border-black':'border-transparent'}`}
         style={{zIndex:`${props.zIndex}`,fontSize:`2rem`,gridColumnStart: `${props.style.colStart}`,gridColumnEnd: `${props.style.colEnd}`,gridRowStart: `${props.style.rowStart}`,gridRowEnd: `${props.style.rowEnd}`}}>
          <div onClick={(e)=>{handleDoubleClick(e)}} className={`w-full h-full absolute ${isEdit ? 'pointer-events-none':'pointer-events-auto' } `}>
 
          </div>
           <p  onPaste={handlePaste}
-          ref={editorRef} onFocus={(e)=>{ handleItemClick(e)}}  onBlur={(e)=>{HandleContentChange(e);}} dangerouslySetInnerHTML={{ __html: props.Text }} contentEditable={true} 
+          ref={editorRef} onFocus={(e)=>{onText.current = true; console.log(onText); handleItemClick(e);}} onBlur={(e)=>{HandleContentChange(e)}}
+           dangerouslySetInnerHTML={{ __html: props.Text }} contentEditable={true} 
           className="block box-border w-full leading-[1.1] text-[2.15rem] focus:outline-none  border-transparent ">
           
           </p>

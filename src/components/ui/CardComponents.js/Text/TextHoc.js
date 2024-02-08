@@ -8,9 +8,14 @@ const TextHoc = (OriginalComponent) => {
     const {setEditor,editor,setCard,card} = useContext(AppStateContext);
   //render OriginalComponent and pass on its props.
   const handleStyle = (style,value,className) => {
+    
     console.log('className',className);
     const selection = window.getSelection();
-      const range = selection.getRangeAt(0);
+    const range = selection.getRangeAt(0);
+
+    
+
+
       const selectedText = range.textContent || range.toString() ;
       const clonedContents = range.cloneContents();
       const div = document.createElement('div');
@@ -37,9 +42,11 @@ const TextHoc = (OriginalComponent) => {
     const newCard = [...card]; // Menyalin array card ke variabel baru agar tidak mengubah state langsung
     newCard[editor.index.cardIndex].components[editor.index.componentIndex].contents = editor.ref.current.innerHTML ; // Mengganti nilai contents pada komponen pertama
     setCard(newCard);
-    //console.log(newCard)
+   
+    
   }
-    return <OriginalComponent {...props} handleStyle={(style,value,className)=>{handleStyle(style,value,className)}} />;
+    return <OriginalComponent 
+    {...props} handleStyle={(style,value,className)=>{handleStyle(style,value,className)}} />;
   }
   return NewComponent;
 };

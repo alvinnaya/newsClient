@@ -2,12 +2,13 @@
 import CardView from "@/components/ui/CardComponentView/CardView";
 import Slider from "@/components/ui/CardComponentView/Slider";
 import Logo from "@/components/Logo/logo";
+import GoogleAnalytics from '@/components/GoogleAnalytics';
 
 
   export async function generateMetadata({ params, searchParams }, parent) {
     // read route params
     const apiKey = process.env.API_KEY || 'localhost:3000';
-   
+   console.log(apiKey)
     // fetch data
     const response = await fetch(`http://${apiKey}/api/article/getArticlePublishHeader/${params.articlesId}`, {
         method: 'GET',
@@ -37,13 +38,15 @@ const page = async({params}) => {
     method: 'GET',
     
   });
-
+  console.log(apiKey)
     const article = await response.json();
     const card = article.content.BlogContent;
     const ads = await response2.json();  
     
 
     return (
+      <>
+      <GoogleAnalytics GA_MEASUREMENT_ID='G-0X39YR8CHD'/>
         <div className="w-[100vw] h-screen   flex flex-col overflow-hidden lg:center  ">
           <div className="w-full h-[20rem] lg:h-[8rem] center lg:justify-start flex lg:fixed lg:top-0 lg:p-8">
           
@@ -51,12 +54,13 @@ const page = async({params}) => {
           
           </div>
           <div className="flex center flex-col h-full lg:h-max  lg:scale-90">
-            <Slider Id={params.articlesId} TotalIndexArticle={card.length} card={card} ads={ads} response2={response2} TotalIndex={parseInt((card.length)+((card.length)/2)+1)}>
+            <Slider Id={params.articlesId} TotalIndexArticle={card.length} card={card} ads={ads} response2={response2} TotalIndex={ads==0 ? parseInt((card.length)+1) :parseInt((card.length)+((card.length)/2)+1)}>
            
             </Slider>
           </div>
          
         </div>
+        </>
         
        
        

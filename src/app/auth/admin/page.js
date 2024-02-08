@@ -8,8 +8,8 @@ import Alert from '@/components/ui/Alert';
 
 const page = () => {
     const [formData, setFormData] = useState({
-      "username": "anp123",
-      "password": "Rielia13"
+      "username": "",
+      "password": ""
     });
     const apiKey = process.env.API_KEY || 'localhost:3000';
 

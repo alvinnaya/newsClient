@@ -27,7 +27,7 @@ const NavbarWriterLayout = ({children, setShowLoading,reload,setReload}) => {
           try {
             console.log('jalan');
             const data = Cookies.get("jwt-token")
-            const res = await fetch(`http://localhost:3000/api/writer/profile/`, {
+            const res = await fetch(`http://${process.env.API_KEY}/api/writer/profile/`, {
               method: 'GET',
               headers: {
                 'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ const NavbarWriterLayout = ({children, setShowLoading,reload,setReload}) => {
       },[])
   
   
-
+      
     return (
         <div className='w-screen h-screen p-0 flex lg:flex-row flex-col overflow-hidden bg-neutralPrimary2'>
      <div className='flex h-32 lg:h-full p-4'>
@@ -58,7 +58,7 @@ const NavbarWriterLayout = ({children, setShowLoading,reload,setReload}) => {
           <div onClick={()=>{ pathname != "/writer/profile" ? setShowLoading(true) : console.log(true)  }}>
           <Link href={`/writer/profile`} className="flex flex-col center p-4">
             <div >
-            <img className="w-16 h-16 rounded-full object-cover border-2 border-current" src={`${profile.profile_image}`||"https://inasianspaces.files.wordpress.com/2020/10/lelouch-ep-25-final.png?w=1200"} alt="Rounded avatar"/>
+            <img className="w-16 h-16 rounded-full object-cover border-2 border-current" src={`${profile.profile_image == undefined ? '':profile.profile_image.replace("http://103.127.132.64:3000", "http://api.figustack.com")}`||"https://inasianspaces.files.wordpress.com/2020/10/lelouch-ep-25-final.png?w=1200"} alt="Rounded avatar"/>
             </div>
           </Link>
           </div>

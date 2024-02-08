@@ -22,12 +22,13 @@ const [gagal, setGagal] = useState(false);
 const [berhasil, setBerhasil] = useState(false);
 const [pesanGagal, setPesanGagal] = useState('');
 const [ModalData , setModalData] = useState('')
-const apiKey = process.env.API_KEY || 'localhost:3000';
+const apiKey = process.env.NEXT_PUBLIC_API_KEY || 'localhost:3000';
 const deffaultImage = process.env.DEFFAULT_IMG || '1696143107524.webp';
 
   useEffect( () => {
     
     async function fetchData() {
+      console.log('apikey',apiKey)
       setShowLoadig(true)
     try {
       console.log('jalan');

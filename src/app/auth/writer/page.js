@@ -1,16 +1,16 @@
 'use client';
-
 import { useRouter } from 'next/navigation';
 import {useState} from 'react';
 import Cookies from 'js-cookie';
 
 
+
 const page = () => {
     const [formData, setFormData] = useState({
-      "username": "anp123",
-      "password": "Rielia13"
+      "username": "",
+      "password": ""
     });
-    const apiKey = process.env.API_KEY || 'localhost:3000';
+    const apiKey = process.env.NEXT_PUBLIC_API_KEY||3000;
 
     const router = useRouter();
 
@@ -30,8 +30,10 @@ const page = () => {
 
     const handleSubmit = async (e) => {
       e.preventDefault();
+      console.log(apiKey)
       try {
         const response = await fetch(`http://${apiKey}/api/writer/login`, {
+        
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

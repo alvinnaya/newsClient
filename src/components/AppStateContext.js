@@ -1,6 +1,6 @@
 // AppStateContext.js
 'use client';
-import React, { createContext, useState,useEffect } from 'react';
+import React, { createContext, useState,useEffect, useRef } from 'react';
 import { Draft } from '@/Data/Draft';
 
 export const AppStateContext = createContext();
@@ -17,6 +17,7 @@ export const AppStateProvider = (props) => {
 
   const [componentsClipBoard, setComponentsClipBoard] = useState([])
   const [componentsSelect, setComponentsSelect] = useState([])
+  const onText= useRef(false)
 
   const [card, setCard] = useState([
    {
@@ -86,7 +87,7 @@ export const AppStateProvider = (props) => {
   // Definisikan fungsi-fungsi lain untuk memperbarui state global
 
   return (
-    <AppStateContext.Provider value={{ editor, setEditor,card,setCard,adsCard,setAdsCard,componentsSelect,setComponentsSelect,componentsClipBoard,setComponentsClipBoard }}>
+    <AppStateContext.Provider value={{ editor, setEditor,card,setCard,adsCard,setAdsCard,componentsSelect,setComponentsSelect,componentsClipBoard,setComponentsClipBoard,onText }}>
       {props.children}
     </AppStateContext.Provider>
   );

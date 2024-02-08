@@ -11,7 +11,7 @@ function BaseImage(props) {
             <div 
              className={`leading-tight h-full w-full p-0 m-0 z-[3] font-[50] h-[min-content]  ${props.style}`} style={{zIndex:`${props.zIndex}`,fontSize:`1rem`,gridColumnStart: `${props.style.colStart}`,gridColumnEnd: `${props.style.colEnd}`,gridRowStart: `${props.style.rowStart}`,gridRowEnd: `${props.style.rowEnd}`}} >
                   <div className='w-full h-full bg-clip-border' style={{}}>
-                    <Image unoptimized  width={100} height={100} className={`w-full h-full object-cover`} style={{borderRadius:`${props.style.borderRadius}rem`}} src={props.all.contents} alt={`gambar`}/>
+                    <Image unoptimized  width={100} height={100} className={`w-full h-full object-cover`} style={{borderRadius:`${props.style.borderRadius}rem`}} src={props.all.contents.replace("http://103.127.132.64:3000", "http://api.figustack.com")} alt={`gambar`}/>
                   </div>
                  
             </div>

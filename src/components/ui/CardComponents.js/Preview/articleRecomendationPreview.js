@@ -13,7 +13,7 @@ const handleAdd = ()=>{
         const newCard = [...card]
         const emptyTextComponents = {
             name : 'ArticleRecomendationContainer',
-            image: 'http://localhost:3000/uploads/1696055207493.jpg',
+            image: '/empty-image.png',
             contents: 'ini headline default',
             link :'http://localhost:3001/articles/50',
             style : {

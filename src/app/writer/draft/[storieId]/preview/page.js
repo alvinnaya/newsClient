@@ -6,7 +6,7 @@ import PreviewSlider from "@/components/ui/CardComponents.js/Preview/PreviewSlid
 
 const page = async({params}) => {
   const apiKey = process.env.API_KEY || 'localhost:3000';
-const deffaultImage = process.env.DEFFAULT_IMG || '1696143107524.webp';
+  const deffaultImage = process.env.DEFFAULT_IMG || '1696143107524.webp';
     const response = await fetch(`http://${apiKey}/api/article/getarticle/${params.storieId}`, {
     method: 'GET',
     

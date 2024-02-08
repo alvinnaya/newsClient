@@ -275,7 +275,7 @@ const page = () => {
                       <div className="flex flex-wrap  relative bg-neutralPrimary1 border shadow-brutalism shadow-current border-current w-[90%] p-6 gap-6 m-4 rounded-xl">
                           
                          <div className={`bg-transparent h-[25rem] w-[20rem]`}>
-                          {item.url_image? <img className="w-full h-full bg-neutralPrimary2 border border-current object-cover rounded-xl" src={item.url_image}/>: "tidak ada"}
+                          {item.url_image? <img className="w-full h-full bg-neutralPrimary2 border border-current object-cover rounded-xl" src={item.url_image.replace("http://103.127.132.64:3000", "http://api.figustack.com")}/>: "tidak ada"}
                         </div>
                         <div className="bg-neutralPrimary2 border border-current h-[20rem] w-[25rem] p-6 rounded-xl relative ">
                             <div className="absolute bottom-0 right-0 p-2 m-2">

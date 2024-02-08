@@ -11,7 +11,7 @@ const handleAdd = ()=>{
         const newCard = [...card]
         const emptyTextComponents = {
             name : 'ImageContainer',
-            contents: 'http://localhost:3000/uploads/1696055207493.jpg',
+            contents: '/empty-image.png',
             style : {
               colStart: '2',
               colEnd : '10',
