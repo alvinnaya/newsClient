@@ -42,7 +42,7 @@ const CardView =  ({card,currentIndex,ads,response2}) => {
              card.map((item,index) => {
               return(
           
-                <div key={index} id={`${index+1}`} className={`${currentIndex == (index+1)? "opacity-[100%]":"opacity-[0%]"} duration-[2000ms] overflow-hidden w-[60rem] h-[72rem] flex-none border-neutralSecondary1 border-2 scale-90 rounded-xl  `}>
+                <div key={index} id={`${index+1}`} className={`${currentIndex == (index+1)? "opacity-[100%]":"opacity-[0%]"} duration-[2000ms] overflow-hidden w-[60rem] scale-[1] md:scale-100  h-[72rem] flex-none border-neutralSecondary1 border-2 scale-90 rounded-xl  `}>
                   
                   <Card key={index} color={`${item.color}`}  gradient={`${item.gradient}`}>
                   {item.components.map((item2,index2)=>{
@@ -61,7 +61,7 @@ const CardView =  ({card,currentIndex,ads,response2}) => {
         if ((index + 1) % 2 === 0) { // Jika indeks + 1 adalah kelipatan tiga
           return(
             <>
-            <div key={index} id={`${index+1}`} className={`${currentIndex == ((index+1)+((index+1)/2)-1)? "opacity-[100%]":"opacity-[0%]"} p-0 m-0 duration-[2000ms] w-[60rem] h-[72rem] flex-none border-neutralSecondary1 border-2 scale-90 rounded-xl overflow-hidden  `}>
+            <div key={index} id={`${index+1}`} className={`${currentIndex == ((index+1)+((index+1)/2)-1)? "opacity-[100%]":"opacity-[0%]"} p-0 m-0 duration-[2000ms] w-[60rem] h-[72rem] scale-[1] md:scale-90 flex-none border-neutralSecondary1 border-2  rounded-xl overflow-hidden  `}>
               
               <Card key={index} color={`${item.color}`}  gradient={`${item.gradient}`}>
               {item.components.map((item2,index2)=>{
@@ -73,7 +73,7 @@ const CardView =  ({card,currentIndex,ads,response2}) => {
             
             </div>
 
-            <div key={index} id={`${index+1}`} className={`duration-1000 ${currentIndex ==  ((index+1)+(index+1)/2)? "opacity-[100%]":"opacity-[10%]"} overflow-hidden w-[60rem] h-[72rem] flex-none border-neutralSecondary1 border-2 scale-90 rounded-xl  `}>
+            <div key={index} id={`${index+1}`} className={`duration-1000 ${currentIndex ==  ((index+1)+(index+1)/2)? "opacity-[100%]":"opacity-[10%]"} overflow-hidden w-[60rem] h-[72rem] flex-none border-neutralSecondary1 border-2 scale-[1] md:scale-90  rounded-xl  `}>
                <AdsCard ads={ads} ></AdsCard> 
               {/* <Card key={index}>
               {item.components.map((item2,index2)=>{
@@ -96,7 +96,7 @@ const CardView =  ({card,currentIndex,ads,response2}) => {
         } else {
           return(
           
-            <div key={index} id={`${index+1}`} className={`${currentIndex == (index+1)+(index/2)? "opacity-[100%]":"opacity-[0%]"} duration-[2000ms] overflow-hidden w-[60rem] h-[72rem] flex-none border-neutralSecondary1 border-2 scale-90 rounded-xl  `}>
+            <div key={index} id={`${index+1}`} className={`${currentIndex == (index+1)+(index/2)? "opacity-[100%]":"opacity-[0%]"} duration-[2000ms] overflow-hidden w-[60rem] h-[72rem] flex-none border-neutralSecondary1 border-2 scale-[1] md:scale-90  rounded-xl  `}>
               
               <Card key={index} color={`${item.color}`}  gradient={`${item.gradient}`}>
               {item.components.map((item2,index2)=>{

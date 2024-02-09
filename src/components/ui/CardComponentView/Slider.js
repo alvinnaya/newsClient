@@ -8,8 +8,8 @@ const Slider = ({TotalIndex,Id,TotalIndexArticle,card,ads, response2}) => {
     const [index,setIndex] = useState(0)
     return (
         <>
-         <div className="w-[60rem]  flex overflow-hidden  0 ">
-          <div className="flex w-[60rem] duration-300" style={{	transform: `translateX(${-100*index}%)`,}}>
+         <div className="w-[60rem] scale-[1] md:scale-90  flex overflow-hidden  0 ">
+          <div className="flex w-[60rem] scale-[1] md:scale-90 duration-300" style={{	transform: `translateX(${-100*index}%)`,}}>
             
           
           <CardView Id={Id} card={card} currentIndex={index+1} ads={ads} response2={response2}/>

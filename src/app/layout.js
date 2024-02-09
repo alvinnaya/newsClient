@@ -1,3 +1,4 @@
+import GoogleAnalytics from '@/components/GoogleAnalytics';
 import './globals.css'
 import { Montserrat } from 'next/font/google';
 
@@ -13,7 +14,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      
+      <GoogleAnalytics GA_MEASUREMENT_ID='G-0X39YR8CHD'/>
       <body className={montserrat.className}>{children}</body>
     </html>
   )

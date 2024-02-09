@@ -26,7 +26,7 @@ const page = () => {
     
         try {
           console.log('link',process.env.API_KEY)
-          const response = await fetch(`http://${apiKey}/api/article/getallArticle?page=${page}&perPage=4`);
+          const response = await fetch(`https://${apiKey}/api/article/getallArticle?page=${page}&perPage=4`);
           const data = await response.json();
           setPosts([...posts, ...data]);
           console.log('length',data.length);

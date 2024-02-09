@@ -13,7 +13,7 @@ const NextArticle = ({id,TotalIndex,currentIndex}) => {
     const [loading, setLoading] = useState(false);
     const observerTarget = useRef(null);
 
-    const apiKey = process.env.NEXT_PUBLIC_API_KEY || 'localhost:3000';
+    const apiKey = process.env.API_KEY|| 'localhost:3000';
     
     useEffect(() => {
     
@@ -59,13 +59,13 @@ const NextArticle = ({id,TotalIndex,currentIndex}) => {
   
       try {
         console.log('link',process.env.API_KEY)
-        const response = await fetch(`http://${apiKey}/api/recomendation/getRecomendation/${id}`, {
+        const response = await fetch(`https://${apiKey}/api/recomendation/getRecomendation/${id}`, {
               method: 'GET',
               
             });
             const article = await response.json();
             console.log(article)
-            const response2 = await fetch(`http://${apiKey}/api/recomendation/getArticles?ids=${article}&page=${page}`, {
+            const response2 = await fetch(`https://${apiKey}/api/recomendation/getArticles?ids=${article}&page=${page}`, {
                 method: 'GET',
                 
               });
@@ -111,7 +111,7 @@ const NextArticle = ({id,TotalIndex,currentIndex}) => {
       
     return (
         <>  
-             <div key={TotalIndex+1}  className={`w-[60rem] scroll-slide-y aspect-[5/6] duration-700 flex-none flex-col overflow-y-auto overflow-x-hidden ${currentIndex >= TotalIndex? "":"opacity-0"} `} >
+             <div key={TotalIndex+1}  className={`w-[60rem] scale-[1.05]  md:scale-100  scroll-slide-y aspect-[5/6] duration-700 flex-none flex-col overflow-y-auto overflow-x-hidden ${currentIndex >= TotalIndex? "":"opacity-0"} `} >
               
               {posts && posts.map((item,index) => {
                 console.log('index',(index + 1)%3)
