@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <GoogleAnalytics GA_MEASUREMENT_ID='G-0X39YR8CHD'/>
-      
+      <GoogleAds />
       <body className={montserrat.className}>{children}</body>
     </html>
   )
