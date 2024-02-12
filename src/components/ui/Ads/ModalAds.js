@@ -22,10 +22,10 @@ const ModalAds = (props) => {
       console.log('get tags')
     try{
       console.log('get tags')
-      const data1 = await fetch(`http://${apiKey}/api/ads/alltags`, {
+      const data1 = await fetch(`https://${apiKey}/api/ads/alltags`, {
             method: 'GET',
           })
-      const data2 = await fetch(`http://${apiKey}/api/ads/adstags/${props.Id}`, {
+      const data2 = await fetch(`https://${apiKey}/api/ads/adstags/${props.Id}`, {
             method: 'GET',
           })
       const articleTags = await data2.json()
@@ -56,7 +56,7 @@ console.log(err)
       try{
         console.log(inputValue)
         const data = Cookies.get("admin-token")
-        const response = await fetch(`http://${apiKey}/api/ads/initializeTag`, {
+        const response = await fetch(`https://${apiKey}/api/ads/initializeTag`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -84,7 +84,7 @@ console.log(err)
     try{
       console.log(item.id)
       const data = Cookies.get("admin-token")
-      const response = await fetch(`http://${apiKey}/api/ads/removeTag`, {
+      const response = await fetch(`https://${apiKey}/api/ads/removeTag`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -117,13 +117,13 @@ const saveDraft = async()=>{
     const foundImageContainer = content.BlogContent.map((blog) =>
     blog.components.find((component) => component.name === 'ImageContainer')
   ).filter(Boolean)[0];
-  const url_image = foundImageContainer? foundImageContainer.contents: `http://${apiKey}/uploads/1698070439215.webp` ;
+  const url_image = foundImageContainer? foundImageContainer.contents: `https://${apiKey}/uploads/1698070439215.webp` ;
    
 console.log(url_image)
     console.log(props.Id)
   
   
- const response = await fetch(`http://${apiKey}/api/ads/update/1`, {
+ const response = await fetch(`https://${apiKey}/api/ads/update/1`, {
    method: 'PUT',
    headers: {
      'Content-Type': 'application/json',

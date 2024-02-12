@@ -28,7 +28,7 @@ const AdsCard = ({ads}) => {
             // Mengakses elemen pada indeks acak
             const adsindeks = ads[indeksAcak].ads_id;
             console.log('selected ads', adsindeks);
-            const response = await fetch(`https://localhost:3000/api/ads/getads/${adsindeks}`, {
+            const response = await fetch(`https://api.figustack.com/api/ads/getads/${adsindeks}`, {
               method: 'GET',
               
             });

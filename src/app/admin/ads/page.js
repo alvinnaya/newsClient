@@ -33,7 +33,7 @@ const page = () => {
        
       
       
-     const response = await fetch(`http://${apiKey}/api/ads/update/2`, {
+     const response = await fetch(`https://${apiKey}/api/ads/update/2`, {
        method: 'PUT',
        headers: {
          'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ const page = () => {
        
       console.log(status)
       
-     const response = await fetch(`http://${apiKey}/api/ads/update/3`, {
+     const response = await fetch(`https://${apiKey}/api/ads/update/3`, {
        method: 'PUT',
        headers: {
          'Content-Type': 'application/json',
@@ -106,7 +106,7 @@ const page = () => {
         try {
           setShowLoading(true)
           const data = Cookies.get("admin-token")
-          const response = await fetch(`http://${apiKey}/api/ads/getAdsbyAdmin`, {
+          const response = await fetch(`https://${apiKey}/api/ads/getAdsbyAdmin`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
@@ -117,7 +117,7 @@ const page = () => {
           const article = await response.json();
           const allads = [];
           await Promise.all( article.map(async(item)=>{
-            const response2 = await fetch(`http://${apiKey}/api/ads/adstags/${item.id}`, {
+            const response2 = await fetch(`https://${apiKey}/api/ads/adstags/${item.id}`, {
               method: 'GET',
               
             });
@@ -185,7 +185,7 @@ const page = () => {
            }
            
            
-          const response = await fetch(`http://${apiKey}/api/ads/create/`, {
+          const response = await fetch(`https://${apiKey}/api/ads/create/`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -222,7 +222,7 @@ const page = () => {
           
            const id = currentId
            
-          const response = await fetch(`http://${apiKey}/api/ads/remove/`, {
+          const response = await fetch(`https://${apiKey}/api/ads/remove/`, {
             method: 'DELETE',
             headers: {
               'Content-Type': 'application/json',

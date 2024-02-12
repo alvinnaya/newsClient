@@ -5,9 +5,10 @@ import Script from 'next/script';
 export default function GoogleAnalytics({ GA_MEASUREMENT_ID }) {
     return (
         <>
-            <Script strategy="afterInteractive" 
+            
+            <Script async
                 src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
-            <Script id='google-analytics' strategy="afterInteractive"
+            <Script id='google-analytics'
                 dangerouslySetInnerHTML={{
                     __html: `
                     window.dataLayer = window.dataLayer || [];

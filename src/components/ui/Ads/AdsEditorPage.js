@@ -30,7 +30,7 @@ const AdsEditorPage = (props) => {
     async function fetchData() {
       try {
      
-        const response = await fetch(`http://${apiKey}/api/ads/getads/${props.Id}`, {
+        const response = await fetch(`https://${apiKey}/api/ads/getads/${props.Id}`, {
           method: 'GET',
           
         });

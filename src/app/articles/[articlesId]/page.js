@@ -2,6 +2,7 @@
 import CardView from "@/components/ui/CardComponentView/CardView";
 import Slider from "@/components/ui/CardComponentView/Slider";
 import Logo from "@/components/Logo/logo";
+import Link from "next/link";
 
 
   export async function generateMetadata({ params, searchParams }, parent) {
@@ -16,9 +17,12 @@ import Logo from "@/components/Logo/logo";
     const article = await response.json();
    
     return {
+      'monetag': "bb42474b5d86370c5d7e6d6b4a540ee2",
+      'google-adsense-account':"ca-pub-2421830929324855",
       title: `${article.title}`,
+      description: `${article.descrip}`,
       openGraph: {
-        images: [`${article.url_image}`],
+        images: [`${article.url_image.replace("http://103.127.132.64:3000", "http://api.figustack.com")? article.url_image.replace("http://103.127.132.64:3000", "http://api.figustack.com"): article.url_image.replace }`],
         title: `${article.title}`,
         description: `${article.descrip}`
       },
@@ -49,7 +53,7 @@ const page = async({params}) => {
         <div className="w-[100vw] h-screen   flex flex-col overflow-hidden lg:center  ">
           <div className="w-full h-[20rem] lg:h-[8rem] center lg:justify-start flex lg:fixed lg:top-0 lg:p-8">
           
-          <div className="lg:w-[8rem] lg:h-[8rem] w-[10rem] h-[10rem] my-4 "><Logo/></div>
+          <Link href={'/'} className="lg:w-[8rem] lg:h-[8rem] w-[10rem] h-[10rem] my-4 "><Logo/></Link>
           
           </div>
           <div className="flex center flex-col h-full lg:h-max  lg:scale-90">

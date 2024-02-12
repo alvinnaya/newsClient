@@ -13,8 +13,8 @@ const Slider = ({TotalIndex,Id,TotalIndexArticle,card,ads, response2}) => {
             
           
           <CardView Id={Id} card={card} currentIndex={index+1} ads={ads} response2={response2}/>
-          <NextArticle id={Id} TotalIndex={TotalIndex} currentIndex={index+1}/>
-          
+          <NextArticle id={Id} TotalIndex={TotalIndex} currentIndex={index+1} ads={ads}/>
+           
 
           
           </div>

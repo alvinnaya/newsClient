@@ -35,7 +35,7 @@ const page = () => {
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-        const response = await fetch(`http://${apiKey}/api/admin/login`, {
+        const response = await fetch(`https://${apiKey}/api/admin/login`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

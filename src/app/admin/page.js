@@ -30,7 +30,7 @@ useEffect(()=>{
     try {
       console.log('jalan');
       const data = Cookies.get("admin-token")
-      const res = await fetch(`http://${apiKey}/api/writer/get-allprofile/`, {
+      const res = await fetch(`https://${apiKey}/api/writer/get-allprofile/`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -62,7 +62,7 @@ const handleRegister = async()=>{
   }
   setShowLoadig(true)
   try{
-    const res = await fetch(`http://${apiKey}/api/writer/register/`, {
+    const res = await fetch(`https://${apiKey}/api/writer/register/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

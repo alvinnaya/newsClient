@@ -116,8 +116,8 @@ const page = () => {
         <>  
              <div key={1}  className={`scroll-slide-y duration-700 flex-none flex-col center h-screen overflow-y-auto `} >
               <div className="w-full fixed z-50 bg-Primary bg-white py-0 lg:bg-transparent lg:h-[8rem] px-4 lg:justify-start flex lg:fixed lg:top-0 lg:p-8">
-          
-                <div className="lg:w-[8rem] lg:h-[8rem] py-0 w-[10rem] h-[10rem] my-4 "><Logo/></div>
+            
+                <Link href={'/'} className="lg:w-[8rem] lg:h-[8rem] py-0 w-[10rem] h-[10rem] my-4 "><Logo/></Link>
               
               </div>
               
@@ -154,9 +154,13 @@ const page = () => {
             
             
             
-    <div ref={observerTarget}></div>
-    
+          <div ref={observerTarget} className='flex flex-col center h-[40%] '>
+          <div className="w-[6rem] h-[6rem] ">
+              <svg className="animate-spin duration-1000" xmlns="http://www.w3.org/2000/svg" width="80%" height="80%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg>
             </div>
+          </div>
+            
+          </div>
 
             
         </>
