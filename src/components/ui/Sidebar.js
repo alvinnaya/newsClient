@@ -60,7 +60,7 @@ const deffaultImage = process.env.DEFFAULT_IMG || '1696143107524.webp';
       console.log(props.Id)
     
     
-   const response = await fetch(`http://${apiKey}/api/article/update`, {
+   const response = await fetch(`https://${apiKey}/api/article/update`, {
      method: 'PUT',
      headers: {
        'Content-Type': 'application/json',

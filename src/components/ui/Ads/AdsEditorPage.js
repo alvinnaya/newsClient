@@ -17,14 +17,104 @@ import Card from "../Card";
 import SaveAds from "./SaveAds";
 import ImageEditor from "./ImageEditor/ImageEditor";
 import ImageContainer from "./ImageEditor/ImageContainer";
+import AdsEdit from "./AdsContent/AdsEdit";
+import AdsPreview from "./AdsContent/AdsPreview";
+import AdsContainer from "./AdsContent/AdsContainer";
 
 
 const AdsEditorPage = (props) => {
 
-  const {editor,card,setCard,adsCard,setAdsCard} = useContext(AppStateContext);
+  const {editor,card,setCard,adsCard,setAdsCard,componentsSelect, setComponentsSelect,onText} = useContext(AppStateContext);
   const [pageIndex, setPageIndex] = useState(0)
   const apiKey = process.env.API_KEY || 'localhost:3000';
 
+
+
+  useEffect(() => {
+    const keyDownHandler = event => {
+      
+      const code = event.which || event.keyCode;
+
+      let charCode = String.fromCharCode(code).toLowerCase();
+      if ((event.ctrlKey || event.metaKey) && charCode === 's') {
+        console.log('save')
+      } else if ((event.ctrlKey || event.metaKey) && charCode === 'c') {
+        console.log('copy')
+        console.log('select',componentsSelect)
+        handleCopy()
+        // setComponentsClipBoard(componentsSelect)
+      } else if ((event.ctrlKey || event.metaKey) && charCode === 'v') {
+        console.log('paste')
+        handlePaste()
+
+      }else{
+        console.log('User pressed: ', event.key);
+      }
+
+    
+    };
+
+    document.addEventListener('keydown', keyDownHandler);
+
+    return () => {
+      document.removeEventListener('keydown', keyDownHandler);
+    };
+  }, [componentsSelect]);
+
+
+
+
+
+  const handleCopy = async () => {
+    console.log('onText',onText.current)
+if(onText.current){
+  return;
+}
+
+
+    const newCard = [...card];
+    const newComponentArray = [];
+  
+    console.log(newCard[pageIndex]);
+  
+    componentsSelect.forEach((item) => {
+      console.log(newCard[pageIndex].components[item]);
+      newComponentArray.push(newCard[pageIndex].components[item]);
+    });
+  
+    console.log('newComponent', newComponentArray);
+  
+    try {
+      await navigator.clipboard.writeText(JSON.stringify(newComponentArray));
+      console.log('Data copied to clipboard successfully.');
+    } catch (err) {
+      console.error('Error copying to clipboard:', err);
+    }
+  };
+
+
+  
+  const handlePaste = async ()=> {
+    const clipboardItems = await navigator.clipboard.readText()
+    console.log('handlepaste',clipboardItems)
+    const clipboardData = await JSON.parse(clipboardItems)
+    const newCard = [...card]
+    clipboardData.map((item)=>{
+      console.log(item)
+      newCard[pageIndex].components.push(item)
+      
+    })
+    setCard(newCard)
+    console.log(newCard[pageIndex].components)
+  
+
+    
+
+  }
+
+
+
+  
   useEffect(() => {
 
     async function fetchData() {
@@ -61,6 +151,7 @@ const AdsEditorPage = (props) => {
     TextEditor: TextEditor,
     ImageEditor: ImageEditor,
     ArticleRecomendationEditor: ArticleRecomendationEditor,
+    AdsEdit : AdsEdit,
     none: '',
    
     // Tambahkan pemetaan lain di sini
@@ -73,6 +164,7 @@ const AdsEditorPage = (props) => {
     HeadingText : HeadingText,
     SubHeading : SubHeading,
     ArticleRecomendationContainer: ArticleRecomendationContainer, 
+    Ads : AdsContainer,
     none: '',
    
     // Tambahkan pemetaan lain di sini
@@ -101,6 +193,7 @@ const AdsEditorPage = (props) => {
                                       <ImagePreview pageIndex={pageIndex}/>
                                       <SubHeadingPreview pageIndex={pageIndex}/>
                                       <ArticleRecomendationPreview pageIndex={pageIndex}/>
+                                      <AdsPreview pageIndex={pageIndex}/>
                                     </div>
                   
                   }

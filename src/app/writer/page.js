@@ -29,7 +29,7 @@ const [showLoading, setShowLoadig] = useState(true);
       setShowLoadig(true)
       console.log('jalan');
       const data = Cookies.get("jwt-token")
-      const res = await fetch(`http://${process.env.API_KEY}/api/article/getPublishedArticlebyWriter`, {
+      const res = await fetch(`https://${process.env.API_KEY}/api/article/getPublishedArticlebyWriter`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -62,7 +62,7 @@ const [showLoading, setShowLoadig] = useState(true);
       try{ 
         const data = Cookies.get("jwt-token") 
       
-        const response = await fetch(`http://${process.env.API_KEY}/api/article/unpublish`, {
+        const response = await fetch(`https://${process.env.API_KEY}/api/article/unpublish`, {
                   method: 'DELETE',
                   headers: {
                     'Content-Type': 'application/json',

@@ -35,6 +35,8 @@ const [currentIndex,setCurrentIndex] = useState(0)
          <NewButtonText style={'fontSize'} name={'3 x ExtraLarge'} value={'6.5rem'}/>
          <NewButtonText style={'fontSize'} name={'2 x ExtraLarge'} value={'5.5rem'}/>
          <NewButtonText style={'fontSize'} name={'ExtraLarge'} value={'4.5rem'}/>
+         <NewButtonText style={'fontSize'} name={'3Large'} value={'4rem'}/>
+         <NewButtonText style={'fontSize'} name={'2Large'} value={'3.5rem'}/>
          <NewButtonText style={'fontSize'} name={'Large'} value={'3rem'}/>
          <NewButtonText style={'fontSize'} name={'medium'} value={'2.5rem'}/>
          <NewButtonText style={'fontSize'} name={'small'} value={'2.15rem'}/>

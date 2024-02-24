@@ -31,7 +31,7 @@ const apiKey = process.env.NEXT_PUBLIC_API_KEY || 'localhost:3000';
     try {
       console.log('jalan');
       const data = Cookies.get("jwt-token")
-      const res = await fetch(`http://${apiKey}/api/image/get-image/writer`, {
+      const res = await fetch(`https://${apiKey}/api/image/get-image/writer`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ const apiKey = process.env.NEXT_PUBLIC_API_KEY || 'localhost:3000';
       try {
         console.log('jalan');
         const data = Cookies.get("jwt-token")
-        const res = await fetch(`http://${apiKey}/api/writer/profile/`, {
+        const res = await fetch(`https://${apiKey}/api/writer/profile/`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -97,7 +97,7 @@ const handleimageprofile = async() =>{
       return;
     }
     const data = Cookies.get("jwt-token")
-    const response = await fetch(`http://${apiKey}/api/writer/profile/changeImage/`, {
+    const response = await fetch(`https://${apiKey}/api/writer/profile/changeImage/`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -131,7 +131,7 @@ console.log('berhasil di ubah profile')
         
         try {
           const data = Cookies.get("jwt-token")
-          const response = await fetch(`http://${apiKey}/api/image/upload/writer`, {
+          const response = await fetch(`https://${apiKey}/api/image/upload/writer`, {
             method: 'POST',
             headers: {
               'jwt-token': data,
@@ -161,7 +161,7 @@ console.log('berhasil di ubah profile')
   try {
     console.log(nama)
     const data = Cookies.get("jwt-token")
-    const response = await fetch(`http://${apiKey}/api/writer/profile/changeNama/`, {
+    const response = await fetch(`https://${apiKey}/api/writer/profile/changeNama/`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

@@ -17,8 +17,6 @@ import Link from "next/link";
     const article = await response.json();
    
     return {
-      'monetag': "bb42474b5d86370c5d7e6d6b4a540ee2",
-      'google-adsense-account':"ca-pub-2421830929324855",
       title: `${article.title}`,
       description: `${article.descrip}`,
       openGraph: {

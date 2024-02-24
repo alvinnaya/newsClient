@@ -21,10 +21,10 @@ const Modal = (props) => {
       console.log('get tags')
     try{
       console.log('get tags')
-      const data1 = await fetch(`http://${apiKey}/api/article/alltags`, {
+      const data1 = await fetch(`https://${apiKey}/api/article/alltags`, {
             method: 'GET',
           })
-      const data2 = await fetch(`http://${apiKey}/api/article/articletags/${props.Id}`, {
+      const data2 = await fetch(`https://${apiKey}/api/article/articletags/${props.Id}`, {
             method: 'GET',
           })
       const articleTags = await data2.json()
@@ -55,7 +55,7 @@ console.log(err)
       try{
         console.log(inputValue)
         const data = Cookies.get("jwt-token")
-        const response = await fetch(`http://${apiKey}/api/article/initializeTag`, {
+        const response = await fetch(`https://${apiKey}/api/article/initializeTag`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -83,7 +83,7 @@ console.log(err)
     try{
       console.log(item.id)
       const data = Cookies.get("jwt-token")
-      const response = await fetch(`http://${apiKey}/api/article/removeTag`, {
+      const response = await fetch(`https://${apiKey}/api/article/removeTag`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -133,7 +133,7 @@ const saveDraft = async()=>{
     console.log(props.Id)
   
   
- const response = await fetch(`http://${apiKey}/api/article/update`, {
+ const response = await fetch(`https://${apiKey}/api/article/update`, {
    method: 'PUT',
    headers: {
      'Content-Type': 'application/json',
@@ -165,7 +165,7 @@ const CreateTag = async()=>{
   try{
     console.log(inputValue)
     const data = Cookies.get("jwt-token")
-    const response = await fetch(`http://${apiKey}/api/article/createTag`, {
+    const response = await fetch(`https://${apiKey}/api/article/createTag`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

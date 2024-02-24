@@ -5,8 +5,10 @@ import BaseText from "../Ads/viewComponents/BaseText";
 import BaseImage from "../Ads/viewComponents/BaseImage";
 import HeadingText from "../Ads/viewComponents/HeadingText";
 import ArticleRecomendation from "./ArticleRecomendation";
-
-const AdsCard = ({ads}) => {
+import Script from "next/script";
+import Banner from "@/components/Adstera";
+import Ads from "../Ads/viewComponents/Ads";
+const AdsCard = ({ads,num}) => {
     const[adsList,setAdsList] = useState([])
    
     const CardComponentMap = {
@@ -15,6 +17,7 @@ const AdsCard = ({ads}) => {
         HeadingText : HeadingText,
         SubHeading : BaseText,
         ArticleRecomendationContainer: ArticleRecomendation,
+        Ads : Ads,
         none: '',
        
         // Tambahkan pemetaan lain di sini
@@ -23,7 +26,7 @@ const AdsCard = ({ads}) => {
 
         async function fetchData() {
           try {
-            console.log('ads',ads);
+            console.log('ads1');
             const indeksAcak = Math.floor(Math.random() * ads.length);
             // Mengakses elemen pada indeks acak
             const adsindeks = ads[indeksAcak].ads_id;
@@ -55,6 +58,9 @@ const AdsCard = ({ads}) => {
                 return (<CardComponent key={index2} all={item2} Text={item2.contents} style={item2.style} zIndex={item2.zIndex}  componentIndex={index2} />)
               })}
         </Card>
+
+{/* <script async="async" data-cfasync="false" src="//pl22586862.profitablegatecpm.com/f597ba5ef69052375faf2c5006cca898/invoke.js"></script>
+<div id="container-f597ba5ef69052375faf2c5006cca898"></div> */}
     </>
     );
 };

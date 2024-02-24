@@ -8,7 +8,8 @@ const BlogCard = ({children,year,date,title,id,all}) => {
         <div className="flex flex-wrap relative bg-neutralPrimary1 border shadow-brutalism shadow-current border-current w-[90%] p-6 gap-6 m-4 rounded-xl">
                           
                          <div className={`bg-transparant h-[25rem] w-[20rem]`}>
-                          {all.url_image.replace("http://103.127.132.64:3000", "http://api.figustack.com")? <img className="w-full h-full object-cover rounded-xl border border-current" src={all.url_image.replace("http://103.127.132.64:3000", "http://api.figustack.com")}/>: "tidak ada"}
+                           { all.url_image?  <img className="w-full h-full object-cover rounded-xl border border-current" src={all.url_image.replace("http://103.127.132.64:3000", "https://api.figustack.com")? all.url_image.replace("http://103.127.132.64:3000", "https://api.figustack.com"):all.url_image}/>
+                           :  <img className="w-full h-full object-cover rounded-xl border border-current" src={all.url_image }/>}
                         </div>
                         <div className="bg-neutralPrimary2 shadow-brutalism h-[20rem] w-[30rem] p-6 rounded-xl relative  ">
                             <div className="absolute bottom-0 right-0 p-2 m-2">

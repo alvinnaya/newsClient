@@ -6,6 +6,7 @@ import BaseImage from '../CardComponentView/BaseImage';
 import Link from 'next/link';
 import Shape from '../CardComponentView/Shape';
 import AdsCard from '../CardComponentView/AdsCard';
+import Banner from '@/components/Adstera';
 
 const NextArticle = ({id,TotalIndex,currentIndex,ads}) => {
     const[anotherArticle,setAnotherArticle] = useState(null)
@@ -138,10 +139,12 @@ const NextArticle = ({id,TotalIndex,currentIndex,ads}) => {
                 </Link> 
                   </div>
 
-                  { ads != '' &&
+                  { (index + 1) >= 4 && (index + 1)%3 == 0 && 
                   <div className={`scroll-slide-y-child flex flex-col center scale-[80%] h-full lg:scale-75 rounded-xl  `}>
                   <div  className={`w-[60rem] flex aspect-[5/6] rounded-xl m-0 p-0"`}>
-                    <AdsCard ads={ads} ></AdsCard> 
+                    {/* <AdsCard ads={ads} ></AdsCard>  */}
+                    <Banner w={300} h={250}/>
+                   
                   </div>
                   </div>
                   }

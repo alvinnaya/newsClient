@@ -33,7 +33,7 @@ const deffaultImage = process.env.DEFFAULT_IMG || '1696143107524.webp';
     try {
       console.log('jalan');
       const data = Cookies.get("jwt-token")
-      const res = await fetch(`http://${apiKey}/api/article/getArticlebyWriter`, {
+      const res = await fetch(`https://${apiKey}/api/article/getArticlebyWriter`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ const handleDelete = (id) =>{
     try{ 
       const data = Cookies.get("jwt-token") 
     
-      const response = await fetch(`http://${apiKey}/api/article/delete`, {
+      const response = await fetch(`https://${apiKey}/api/article/delete`, {
                 method: 'DELETE',
                 headers: {
                   'Content-Type': 'application/json',
@@ -106,7 +106,7 @@ console.log(id)
     const data = Cookies.get("jwt-token")
    
   
- const response = await fetch(`http://${apiKey}/api/article/publish`, {
+ const response = await fetch(`https://${apiKey}/api/article/publish`, {
    method: 'POST',
    headers: {
      'Content-Type': 'application/json',
@@ -151,7 +151,7 @@ console.log(id)
     const data = Cookies.get("jwt-token")
    
   
- const response = await fetch(`http://${apiKey}/api/article/updatePublish`, {
+ const response = await fetch(`https://${apiKey}/api/article/updatePublish`, {
    method: 'POST',
    headers: {
      'Content-Type': 'application/json',
@@ -213,7 +213,7 @@ console.log(id)
                },
                {
                 name : 'ImageContainer',
-                contents: `http://${apiKey}/uploads/${deffaultImage}`,
+                contents: `https://${apiKey}/uploads/${deffaultImage}`,
                 style : {
                   colStart: '2',
                   colEnd : '10',
@@ -235,7 +235,7 @@ console.log(id)
 console.log('imageContainer',foundImageContainer)
            const url_image = foundImageContainer.contents
            console.log('url_image',url_image)
-          const response = await fetch(`http://${apiKey}/api/article/create`, {
+          const response = await fetch(`https://${apiKey}/api/article/create`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

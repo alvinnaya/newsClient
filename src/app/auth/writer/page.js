@@ -32,7 +32,7 @@ const page = () => {
       e.preventDefault();
       console.log(apiKey)
       try {
-        const response = await fetch(`http://${apiKey}/api/writer/login`, {
+        const response = await fetch(`https://${apiKey}/api/writer/login`, {
         
           method: 'POST',
           headers: {

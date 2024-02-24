@@ -7,6 +7,7 @@ import BaseImage from '@/components/ui/CardComponentView/BaseImage';
 import Shape from '@/components/ui/CardComponentView/Shape';
 import Logo from '@/components/Logo/logo';
 import Link from 'next/link';
+import Banner from '@/components/Adstera';
 
 
 const page = () => {
@@ -121,12 +122,15 @@ const page = () => {
               
               </div>
               
+
               {posts && posts.map((item,index) => {
                 
                 return(
+                  <>
                   <div className={`scroll-slide-y-child  flex flex-col center scale-[85%] h-screen lg:scale-75 rounded-xl  `}>
                   <Link href={`articles/${item.articleId}`}  key={index}  className="rounded-xl border border-current lg:flex p-0 m-0  ">
                    <div className="w-[60rem] flex aspect-[5/6] rounded-xl m-0 p-0">
+                   
                    <Card key={index}  color={`${item.blogContent.color}`}  gradient={`${item.blogContent.gradient}`}>
                    {item.blogContent.components.map((item2,index2)=>{
                      const CardComponent = CardComponentMap[item2.name];
@@ -141,18 +145,21 @@ const page = () => {
                  </div>  
                  
                 </Link> 
-                
+               
 {/* <div>
   <button className='text-2xl bg-white rounded-xl p-4 m-8 border-slate-700 border-2 '>baca selengkapnya</button>
 </div> */}
                   </div>
-                  
+
+                 
+
+                  </>
                   
                   
                 )
             })}
             
-            
+          
             
           <div ref={observerTarget} className='flex flex-col center h-[40%] '>
           <div className="w-[6rem] h-[6rem] ">

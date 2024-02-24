@@ -6,13 +6,16 @@ import Link from "next/link";
 import ArticleRecomendation from "./ArticleRecomendation";
 import AdsCard from "./AdsCard";
 import Shape from "./Shape";
+import Banner from "@/components/Adstera";
+import Script from "next/script";
+import AdsonContent from "../AdsonContent";
 
 
 
 
 const CardView =  ({card,currentIndex,ads,response2}) => {
 
-
+  
 
   
   
@@ -73,8 +76,17 @@ const CardView =  ({card,currentIndex,ads,response2}) => {
             
             </div>
 
-            <div key={index} id={`${index+1}`} className={`duration-1000 ${currentIndex ==  ((index+1)+(index+1)/2)? "opacity-[100%]":"opacity-[10%]"} overflow-hidden w-[60rem] h-[72rem] flex-none border-neutralSecondary1 border-2 scale-[1] md:scale-90  rounded-xl  `}>
-               <AdsCard ads={ads} ></AdsCard> 
+            <div key={index} id={`${index+1}`} className={`duration-1000 ${currentIndex ==  ((index+1)+(index+1)/2)? "opacity-[100%]":"opacity-[10%]"}  overflow-hidden w-[60rem] h-[72rem] flex-none border-2 border-transparent scale-[1] md:scale-90  `}>
+               {/* <AdsCard ads={ads} num={`${index+1}`} ></AdsCard>  */}
+               
+             
+             {currentIndex >=  ((index+1)+((index+1)/2)-2)  &&  <div  className={`w-[60rem] flex aspect-[5/6] m-0 p-0"`}>
+                    {/* <AdsCard ads={ads} ></AdsCard>  */}
+                    <Banner w={300} h={250}/>
+                   
+                  </div>}
+              
+              
               {/* <Card key={index}>
               {item.components.map((item2,index2)=>{
                 const CardComponent = CardComponentMap[item2.name];
