@@ -37,8 +37,8 @@ const Slider = ({TotalIndex,Id,TotalIndexArticle,card,ads, response2}) => {
 
     return (
         <>
-         <div  onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}
-          className="w-[60rem] scale-[1] md:scale-90  flex overflow-hidden  0 ">
+         <div  
+          className=" flex overflow-hidden ">
           <div className="flex w-[60rem] scale-[1] md:scale-90 duration-300" style={{	transform: `translateX(${-100*index}%)`,}}>
             
           
