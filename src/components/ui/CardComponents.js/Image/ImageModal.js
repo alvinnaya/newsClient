@@ -150,11 +150,12 @@ const ImageModal = () => {
               },
               body: formData,
             });
+            
   
             if (response.ok) {
               const data = await response.json();
-              console.log('URL Gambar:', data);
-              setCurrentImage(data.imageUrl);
+              console.log('URL Gambar:', data.url);
+              setCurrentImage(`${data.url.imageUrl}.png`);
               setReupload(!reupload);
             } else {
               console.error('Gagal mengunggah gambar');
@@ -261,7 +262,7 @@ const ImageModal = () => {
                     <div className='flex gap-6 w-full h-[80%] flex-none flex-wrap overflow-y-auto justify-around'> 
                     {listImage.map((item,index) => (
             <div className='flex w-[40%] max-h-[50%] flex-col center' onClick={()=>handleImageChoose(item,index)} >
-              <img className={`max-w-full max-h-full rounded ${index == currentImageIndex ? 'border-4 border-indigo-600 object-cover' : 'object-contain'} `} src={`${item.url_image.replace("http://103.127.132.64:3000", "https://api.figustack.com")}`} />
+              <img className={`max-w-full max-h-full rounded ${index == currentImageIndex ? 'border-4 border-indigo-600 object-cover' : 'object-contain'} `} src={`${item.url_image.replace("http://103.127.132.64:3000", "https://api.figustack.com")}.png`} />
             </div>
         ))}
                      

@@ -128,8 +128,8 @@ const page = () => {
                 return(
                   <>
                   <div className={`scroll-slide-y-child  flex flex-col center scale-[85%] h-screen lg:scale-75 rounded-xl  `}>
-                  <Link href={`articles/${item.articleId}`}  key={index}  className="rounded-xl border border-current lg:flex p-0 m-0  ">
-                   <div className="w-[60rem] flex aspect-[5/6] rounded-xl m-0 p-0">
+                  <a href={`articles/${item.articleId}`}  key={index}  className="rounded-xl border border-current lg:flex p-0 m-0 hover:brightness-[0.5] active:brightness-[0.5] focus:brightness-[0.5]  ">
+                   <div className="w-[60rem] flex aspect-[5/6] rounded-xl m-0 p-0 ">
                    
                    <Card key={index}  color={`${item.blogContent.color}`}  gradient={`${item.blogContent.gradient}`}>
                    {item.blogContent.components.map((item2,index2)=>{
@@ -144,7 +144,12 @@ const page = () => {
                  <svg xmlns="http://www.w3.org/2000/svg" width="80%" height="80%" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
                  </div>  
                  
-                </Link> 
+                </a> 
+                {(index + 1)%3 == 1 && 
+                <div  ref={observerTarget} className={` flex flex-col center scale-[80%] h-[1%]   `}>
+                
+                </div>
+                }
                
 {/* <div>
   <button className='text-2xl bg-white rounded-xl p-4 m-8 border-slate-700 border-2 '>baca selengkapnya</button>

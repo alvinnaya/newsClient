@@ -127,7 +127,7 @@ useEffect(() => {
     async function fetchData() {
       try {
      
-        const response = await fetch(`http://${apiKey}/api/article/getarticle/${props.Id}`, {
+        const response = await fetch(`https://${apiKey}/api/article/getarticle/${props.Id}`, {
           method: 'GET',
           
         });
@@ -162,6 +162,7 @@ useEffect(() => {
     ImageEditor: ImageEditor,
     ArticleRecomendationEditor: ArticleRecomendationEditor,
     CardEditor : CardEditor,
+    HeadingText: TextEditor,
     Shape: shapeEditor,
     none: '',
    

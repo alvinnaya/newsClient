@@ -50,7 +50,7 @@ const CardView =  ({card,currentIndex,ads,response2}) => {
                   <Card key={index} color={`${item.color}`}  gradient={`${item.gradient}`}>
                   {item.components.map((item2,index2)=>{
                     const CardComponent = CardComponentMap[item2.name];
-                    console.log(item2)
+                    //////console.log(item2)
                     return (<CardComponent key={index2} all={item2} Text={item2.contents} style={item2.style} zIndex={item2.zIndex} page={index} componentIndex={index2} />)
                   })}
                   </Card>
@@ -69,7 +69,7 @@ const CardView =  ({card,currentIndex,ads,response2}) => {
               <Card key={index} color={`${item.color}`}  gradient={`${item.gradient}`}>
               {item.components.map((item2,index2)=>{
                 const CardComponent = CardComponentMap[item2.name];
-                console.log(item2)
+                //////console.log(item2)
                 return (<CardComponent key={index2} all={item2} Text={item2.contents} style={item2.style} zIndex={item2.zIndex} page={index} componentIndex={index2} />)
               })}
               </Card>
@@ -80,7 +80,8 @@ const CardView =  ({card,currentIndex,ads,response2}) => {
                {/* <AdsCard ads={ads} num={`${index+1}`} ></AdsCard>  */}
                
              
-             {currentIndex >=  ((index+1)+((index+1)/2)-2)  &&  <div  className={`w-[60rem] flex aspect-[5/6] m-0 p-0"`}>
+             {currentIndex >=  ((index+1)+((index+1)/2)-2)  &&  
+                  <div  className={`w-[60rem] flex aspect-[5/6] m-0 p-0"`}>
                     {/* <AdsCard ads={ads} ></AdsCard>  */}
                     <Banner w={300} h={250}/>
                    
@@ -90,7 +91,7 @@ const CardView =  ({card,currentIndex,ads,response2}) => {
               {/* <Card key={index}>
               {item.components.map((item2,index2)=>{
                 const CardComponent = CardComponentMap[item2.name];
-                console.log(item2)
+                ////console.log(item2)
                 return (<CardComponent key={index2} all={item2} Text={item2.contents} style={item2.style} zIndex={item2.zIndex} page={index} componentIndex={index2} />)
               })}
               </Card> */}
@@ -113,7 +114,7 @@ const CardView =  ({card,currentIndex,ads,response2}) => {
               <Card key={index} color={`${item.color}`}  gradient={`${item.gradient}`}>
               {item.components.map((item2,index2)=>{
                 const CardComponent = CardComponentMap[item2.name];
-                console.log(item2)
+                ////console.log(item2)
                 return (<CardComponent key={index2} all={item2} Text={item2.contents} style={item2.style} zIndex={item2.zIndex} page={index} componentIndex={index2} />)
               })}
               </Card>
